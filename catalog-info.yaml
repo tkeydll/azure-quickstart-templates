@@ -6368,3 +6368,114 @@ spec:
     links:
       - title: Azure Portal
         url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-vnet-two-subnets
+  title: "Virtual Network with Two Subnets"
+  description: "ARM template - 2つのサブネットを持つ仮想ネットワークを作成します"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-vnet-two-subnets
+  tags:
+    - azure
+    - arm
+    - networking
+    - vnet
+    - virtual-network
+    - subnet
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+    - title: Virtual Network Configuration
+      required:
+        - vnetName
+        - vnetAddressPrefix
+        - subnet1Name
+        - subnet1Prefix
+        - subnet2Name
+        - subnet2Prefix
+      properties:
+        vnetName:
+          title: Virtual Network Name
+          type: string
+          description: "作成する仮想ネットワークの名前"
+          default: myVNet
+        vnetAddressPrefix:
+          title: VNet Address Prefix
+          type: string
+          description: "仮想ネットワークのアドレス空間 (CIDR 表記)"
+          default: 10.0.0.0/16
+        subnet1Name:
+          title: Subnet 1 Name
+          type: string
+          description: "1つ目のサブネット名"
+          default: Subnet1
+        subnet1Prefix:
+          title: Subnet 1 Address Prefix
+          type: string
+          description: "1つ目のサブネットのアドレス空間 (CIDR 表記)"
+          default: 10.0.0.0/24
+        subnet2Name:
+          title: Subnet 2 Name
+          type: string
+          description: "2つ目のサブネット名"
+          default: Subnet2
+        subnet2Prefix:
+          title: Subnet 2 Address Prefix
+          type: string
+          description: "2つ目のサブネットのアドレス空間 (CIDR 表記)"
+          default: 10.0.1.0/24
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-vnet-two-subnets'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+        parameters:
+          vnetName: ${{ parameters.vnetName }}
+          vnetAddressPrefix: ${{ parameters.vnetAddressPrefix }}
+          subnet1Name: ${{ parameters.subnet1Name }}
+          subnet1Prefix: ${{ parameters.subnet1Prefix }}
+          subnet2Name: ${{ parameters.subnet2Name }}
+          subnet2Prefix: ${{ parameters.subnet2Prefix }}
+  output:
+    links:
+      - title: Azure Portal - Virtual Network
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}/providers/Microsoft.Network/virtualNetworks/${{ parameters.vnetName }}
