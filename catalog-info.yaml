@@ -1,0 +1,33 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: azure-quickstart-templates
+  title: Azure Resource Manager QuickStart Templates
+  description: >
+    Community-contributed Azure Resource Manager (ARM) QuickStart Templates.
+    A collection of ARM templates for deploying various Azure resources and solutions.
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates
+    backstage.io/techdocs-ref: dir:.
+  tags:
+    - azure
+    - arm-templates
+    - infrastructure
+    - iac
+    - microsoft
+  links:
+    - url: https://azure.microsoft.com/en-us/documentation/templates/
+      title: Azure Quickstart Templates Index
+      icon: web
+    - url: https://github.com/Azure/azure-quickstart-templates/issues
+      title: Issue Tracker
+      icon: github
+    - url: https://github.com/Azure/azure-quickstart-templates/blob/master/1-CONTRIBUTION-GUIDE/README.md
+      title: Contribution Guide
+      icon: help
+spec:
+  type: library
+  lifecycle: production
+  owner: group:azure-quickstart-templates-maintainers
+  system: azure-infrastructure
