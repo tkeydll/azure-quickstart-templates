@@ -23,11 +23,6348 @@ metadata:
     - url: https://github.com/Azure/azure-quickstart-templates/issues
       title: Issue Tracker
       icon: github
-    - url: https://github.com/Azure/azure-quickstart-templates/blob/master/1-CONTRIBUTION-GUIDE/README.md
-      title: Contribution Guide
-      icon: help
 spec:
   type: library
   lifecycle: production
   owner: group:azure-quickstart-templates-maintainers
   system: azure-infrastructure
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 100-blank-template
+  title: "Blank Template"
+  description: "ARM template - Blank Template"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/100-blank-template
+  tags:
+    - azure
+    - arm
+    - basic
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/100-blank-template'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 100-marketplace-sample
+  title: "Marketplace Sample"
+  description: "ARM template - Marketplace Sample"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/100-marketplace-sample
+  tags:
+    - azure
+    - arm
+    - marketplace
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/100-marketplace-sample'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-1vm-2nics-2subnets-1vnet
+  title: "VM with 2 NICs 2 Subnets and VNet"
+  description: "ARM template - VM with 2 NICs 2 Subnets and VNet"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-1vm-2nics-2subnets-1vnet
+  tags:
+    - azure
+    - arm
+    - vm
+    - networking
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-1vm-2nics-2subnets-1vnet'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-aci-dynamicsnav
+  title: "ACI: Dynamics NAV"
+  description: "ARM template - ACI: Dynamics NAV"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-aci-dynamicsnav
+  tags:
+    - azure
+    - arm
+    - containers
+    - aci
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-aci-dynamicsnav'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-aci-linuxcontainer-public-ip
+  title: "ACI: Linux Container with Public IP"
+  description: "ARM template - ACI: Linux Container with Public IP"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-aci-linuxcontainer-public-ip
+  tags:
+    - azure
+    - arm
+    - containers
+    - aci
+    - linux
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-aci-linuxcontainer-public-ip'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-aci-storage-file-share
+  title: "ACI: Storage File Share"
+  description: "ARM template - ACI: Storage File Share"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-aci-storage-file-share
+  tags:
+    - azure
+    - arm
+    - containers
+    - aci
+    - storage
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-aci-storage-file-share'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-aci-vnet
+  title: "ACI: Virtual Network"
+  description: "ARM template - ACI: Virtual Network"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-aci-vnet
+  tags:
+    - azure
+    - arm
+    - containers
+    - aci
+    - networking
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-aci-vnet'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-acs-dcos
+  title: "ACS: DC/OS"
+  description: "ARM template - ACS: DC/OS"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-dcos
+  tags:
+    - azure
+    - arm
+    - containers
+    - acs
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-dcos'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-acs-kubernetes
+  title: "ACS: Kubernetes"
+  description: "ARM template - ACS: Kubernetes"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-kubernetes
+  tags:
+    - azure
+    - arm
+    - containers
+    - acs
+    - kubernetes
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-kubernetes'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-acs-swarm
+  title: "ACS: Docker Swarm"
+  description: "ARM template - ACS: Docker Swarm"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-swarm
+  tags:
+    - azure
+    - arm
+    - containers
+    - acs
+    - swarm
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-swarm'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-acsengine-swarmmode
+  title: "ACS Engine: Swarm Mode"
+  description: "ARM template - ACS Engine: Swarm Mode"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-acsengine-swarmmode
+  tags:
+    - azure
+    - arm
+    - containers
+    - swarm
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-acsengine-swarmmode'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-aks
+  title: "AKS Cluster"
+  description: "ARM template - AKS Cluster"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-aks
+  tags:
+    - azure
+    - arm
+    - kubernetes
+    - aks
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-aks'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-analysis-services-create
+  title: "Analysis Services: Create"
+  description: "ARM template - Analysis Services: Create"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-analysis-services-create
+  tags:
+    - azure
+    - arm
+    - analytics
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-analysis-services-create'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-api-management-create-with-msi
+  title: "API Management with MSI"
+  description: "ARM template - API Management with MSI"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-api-management-create-with-msi
+  tags:
+    - azure
+    - arm
+    - apim
+    - security
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-api-management-create-with-msi'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-app-service-certificate-standard
+  title: "App Service Certificate: Standard"
+  description: "ARM template - App Service Certificate: Standard"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-app-service-certificate-standard
+  tags:
+    - azure
+    - arm
+    - app-service
+    - ssl
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-app-service-certificate-standard'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-app-service-certificate-wildcard
+  title: "App Service Certificate: Wildcard"
+  description: "ARM template - App Service Certificate: Wildcard"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-app-service-certificate-wildcard
+  tags:
+    - azure
+    - arm
+    - app-service
+    - ssl
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-app-service-certificate-wildcard'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-application-gateway-create
+  title: "Application Gateway: Create"
+  description: "ARM template - Application Gateway: Create"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-application-gateway-create
+  tags:
+    - azure
+    - arm
+    - networking
+    - gateway
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-application-gateway-create'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-application-gateway-public-ip
+  title: "Application Gateway with Public IP"
+  description: "ARM template - Application Gateway with Public IP"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-application-gateway-public-ip
+  tags:
+    - azure
+    - arm
+    - networking
+    - gateway
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-application-gateway-public-ip'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-application-gateway-public-ip-ssl-offload
+  title: "Application Gateway: Public IP with SSL Offload"
+  description: "ARM template - Application Gateway: Public IP with SSL Offload"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-application-gateway-public-ip-ssl-offload
+  tags:
+    - azure
+    - arm
+    - networking
+    - gateway
+    - ssl
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-application-gateway-public-ip-ssl-offload'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-application-gateway-redirect
+  title: "Application Gateway with Redirect"
+  description: "ARM template - Application Gateway with Redirect"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-application-gateway-redirect
+  tags:
+    - azure
+    - arm
+    - networking
+    - gateway
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-application-gateway-redirect'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-application-gateway-waf
+  title: "Application Gateway: WAF"
+  description: "ARM template - Application Gateway: WAF"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-application-gateway-waf
+  tags:
+    - azure
+    - arm
+    - networking
+    - gateway
+    - security
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-application-gateway-waf'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-automation-configuration
+  title: "Automation: Configuration"
+  description: "ARM template - Automation: Configuration"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-automation-configuration
+  tags:
+    - azure
+    - arm
+    - automation
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-automation-configuration'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-automation-runbook-getvms
+  title: "Automation: Runbook Get VMs"
+  description: "ARM template - Automation: Runbook Get VMs"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-automation-runbook-getvms
+  tags:
+    - azure
+    - arm
+    - automation
+    - vm
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-automation-runbook-getvms'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-availability-set-create-3fds-20uds
+  title: "Availability Set with 3 FDs and 20 UDs"
+  description: "ARM template - Availability Set with 3 FDs and 20 UDs"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-availability-set-create-3FDs-20UDs
+  tags:
+    - azure
+    - arm
+    - vm
+    - ha
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-availability-set-create-3FDs-20UDs'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-azure-api-management-create
+  title: "Azure API Management: Create"
+  description: "ARM template - Azure API Management: Create"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-azure-api-management-create
+  tags:
+    - azure
+    - arm
+    - apim
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-azure-api-management-create'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-azure-database-migration-service
+  title: "Azure Database Migration Service"
+  description: "ARM template - Azure Database Migration Service"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-azure-database-migration-service
+  tags:
+    - azure
+    - arm
+    - database
+    - migration
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-azure-database-migration-service'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-azure-dns-new-zone
+  title: "Azure DNS: New Zone"
+  description: "ARM template - Azure DNS: New Zone"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-azure-dns-new-zone
+  tags:
+    - azure
+    - arm
+    - networking
+    - dns
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-azure-dns-new-zone'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-azure-relay-create-namespace
+  title: "Azure Relay: Create Namespace"
+  description: "ARM template - Azure Relay: Create Namespace"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-azure-relay-create-namespace
+  tags:
+    - azure
+    - arm
+    - messaging
+    - relay
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-azure-relay-create-namespace'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-azure-search-create
+  title: "Azure Search: Create"
+  description: "ARM template - Azure Search: Create"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-azure-search-create
+  tags:
+    - azure
+    - arm
+    - search
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-azure-search-create'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-azurefirewall-create
+  title: "Azure Firewall: Create"
+  description: "ARM template - Azure Firewall: Create"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-azurefirewall-create
+  tags:
+    - azure
+    - arm
+    - networking
+    - security
+    - firewall
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-azurefirewall-create'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-azurefirewall-sandbox
+  title: "Azure Firewall: Sandbox"
+  description: "ARM template - Azure Firewall: Sandbox"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-azurefirewall-sandbox
+  tags:
+    - azure
+    - arm
+    - networking
+    - security
+    - firewall
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-azurefirewall-sandbox'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-backup-oms-monitoring
+  title: "Backup: OMS Monitoring"
+  description: "ARM template - Backup: OMS Monitoring"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-backup-oms-monitoring
+  tags:
+    - azure
+    - arm
+    - backup
+    - monitoring
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-backup-oms-monitoring'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-backup-protect-iaasvm
+  title: "Backup: Protect IaaS VM"
+  description: "ARM template - Backup: Protect IaaS VM"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-backup-protect-iaasvm
+  tags:
+    - azure
+    - arm
+    - backup
+    - vm
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-backup-protect-iaasvm'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-backup-vault-create
+  title: "Backup: Vault Create"
+  description: "ARM template - Backup: Vault Create"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-backup-vault-create
+  tags:
+    - azure
+    - arm
+    - backup
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-backup-vault-create'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-batchaccount-with-storage
+  title: "Batch Account with Storage"
+  description: "ARM template - Batch Account with Storage"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-batchaccount-with-storage
+  tags:
+    - azure
+    - arm
+    - batch
+    - storage
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-batchaccount-with-storage'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-cdn-with-custom-origin
+  title: "CDN with Custom Origin"
+  description: "ARM template - CDN with Custom Origin"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-cdn-with-custom-origin
+  tags:
+    - azure
+    - arm
+    - cdn
+    - networking
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-cdn-with-custom-origin'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-cognitive-services-computer-vision-api
+  title: "Cognitive Services: Computer Vision API"
+  description: "ARM template - Cognitive Services: Computer Vision API"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-cognitive-services-Computer-vision-API
+  tags:
+    - azure
+    - arm
+    - ai
+    - cognitive-services
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-cognitive-services-Computer-vision-API'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-cognitive-services-translate
+  title: "Cognitive Services: Translate"
+  description: "ARM template - Cognitive Services: Translate"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-cognitive-services-translate
+  tags:
+    - azure
+    - arm
+    - ai
+    - cognitive-services
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-cognitive-services-translate'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-container-registry
+  title: "Container Registry"
+  description: "ARM template - Container Registry"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-container-registry
+  tags:
+    - azure
+    - arm
+    - containers
+    - acr
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-container-registry'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-container-registry-geo-replication
+  title: "Container Registry: Geo Replication"
+  description: "ARM template - Container Registry: Geo Replication"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-container-registry-geo-replication
+  tags:
+    - azure
+    - arm
+    - containers
+    - acr
+    - ha
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-container-registry-geo-replication'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-cosmosdb-api-for-mongodb-account-create
+  title: "Cosmos DB: API for MongoDB Account"
+  description: "ARM template - Cosmos DB: API for MongoDB Account"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-cosmosdb-api-for-mongodb-account-create
+  tags:
+    - azure
+    - arm
+    - database
+    - cosmosdb
+    - mongodb
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-cosmosdb-api-for-mongodb-account-create'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-cosmosdb-create-arm-template
+  title: "Cosmos DB: Create ARM Template"
+  description: "ARM template - Cosmos DB: Create ARM Template"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-cosmosdb-create-arm-template
+  tags:
+    - azure
+    - arm
+    - database
+    - cosmosdb
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-cosmosdb-create-arm-template'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-cosmosdb-create-multi-region-account
+  title: "Cosmos DB: Multi-Region Account"
+  description: "ARM template - Cosmos DB: Multi-Region Account"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-cosmosdb-create-multi-region-account
+  tags:
+    - azure
+    - arm
+    - database
+    - cosmosdb
+    - ha
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-cosmosdb-create-multi-region-account'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-create-ase-with-webapp
+  title: "App Service Environment with Web App"
+  description: "ARM template - App Service Environment with Web App"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-create-ase-with-webapp
+  tags:
+    - azure
+    - arm
+    - app-service
+    - ase
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-create-ase-with-webapp'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-data-factory-blob-to-sql-copy
+  title: "Data Factory: Blob to SQL Copy"
+  description: "ARM template - Data Factory: Blob to SQL Copy"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-blob-to-sql-copy
+  tags:
+    - azure
+    - arm
+    - data-factory
+    - etl
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-blob-to-sql-copy'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-data-factory-blob-to-sql-copy-stored-proc
+  title: "Data Factory: Blob to SQL Copy with Stored Proc"
+  description: "ARM template - Data Factory: Blob to SQL Copy with Stored Proc"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-blob-to-sql-copy-stored-proc
+  tags:
+    - azure
+    - arm
+    - data-factory
+    - etl
+    - sql
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-blob-to-sql-copy-stored-proc'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-data-factory-chained-copy-activities
+  title: "Data Factory: Chained Copy Activities"
+  description: "ARM template - Data Factory: Chained Copy Activities"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-chained-copy-activities
+  tags:
+    - azure
+    - arm
+    - data-factory
+    - etl
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-chained-copy-activities'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-data-factory-hive-transformation
+  title: "Data Factory: Hive Transformation"
+  description: "ARM template - Data Factory: Hive Transformation"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-hive-transformation
+  tags:
+    - azure
+    - arm
+    - data-factory
+    - hdinsight
+    - hive
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-hive-transformation'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-data-factory-salesforce-to-blob-copy
+  title: "Data Factory: Salesforce to Blob Copy"
+  description: "ARM template - Data Factory: Salesforce to Blob Copy"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-salesforce-to-blob-copy
+  tags:
+    - azure
+    - arm
+    - data-factory
+    - etl
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-salesforce-to-blob-copy'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-data-factory-v2-blob-to-blob-copy
+  title: "Data Factory V2: Blob to Blob Copy"
+  description: "ARM template - Data Factory V2: Blob to Blob Copy"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-v2-blob-to-blob-copy
+  tags:
+    - azure
+    - arm
+    - data-factory
+    - etl
+    - storage
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-v2-blob-to-blob-copy'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-data-factory-v2-blob-to-sql-copy
+  title: "Data Factory V2: Blob to SQL Copy"
+  description: "ARM template - Data Factory V2: Blob to SQL Copy"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-v2-blob-to-sql-copy
+  tags:
+    - azure
+    - arm
+    - data-factory
+    - etl
+    - sql
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-v2-blob-to-sql-copy'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-data-factory-v2-onprem-sql-to-blob-copy
+  title: "Data Factory V2: On-Prem SQL to Blob Copy"
+  description: "ARM template - Data Factory V2: On-Prem SQL to Blob Copy"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-v2-onprem-sql-to-blob-copy
+  tags:
+    - azure
+    - arm
+    - data-factory
+    - etl
+    - hybrid
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-v2-onprem-sql-to-blob-copy'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-data-factory-v2-provision-ssis-runtime
+  title: "Data Factory V2: Provision SSIS Runtime"
+  description: "ARM template - Data Factory V2: Provision SSIS Runtime"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-v2-provision-ssis-runtime
+  tags:
+    - azure
+    - arm
+    - data-factory
+    - ssis
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-v2-provision-ssis-runtime'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-data-factory-v2-transform-using-spark
+  title: "Data Factory V2: Transform Using Spark"
+  description: "ARM template - Data Factory V2: Transform Using Spark"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-v2-transform-using-spark
+  tags:
+    - azure
+    - arm
+    - data-factory
+    - spark
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-v2-transform-using-spark'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-data-lake-analytics
+  title: "Data Lake Analytics"
+  description: "ARM template - Data Lake Analytics"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-lake-analytics
+  tags:
+    - azure
+    - arm
+    - analytics
+    - data-lake
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-lake-analytics'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-data-lake-store-encryption-adls
+  title: "Data Lake Store: Encryption with ADLS"
+  description: "ARM template - Data Lake Store: Encryption with ADLS"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-lake-store-encryption-adls
+  tags:
+    - azure
+    - arm
+    - storage
+    - data-lake
+    - security
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-lake-store-encryption-adls'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-data-lake-store-encryption-key-vault
+  title: "Data Lake Store: Encryption with Key Vault"
+  description: "ARM template - Data Lake Store: Encryption with Key Vault"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-lake-store-encryption-key-vault
+  tags:
+    - azure
+    - arm
+    - storage
+    - data-lake
+    - security
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-lake-store-encryption-key-vault'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-data-lake-store-no-encryption
+  title: "Data Lake Store: No Encryption"
+  description: "ARM template - Data Lake Store: No Encryption"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-lake-store-no-encryption
+  tags:
+    - azure
+    - arm
+    - storage
+    - data-lake
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-lake-store-no-encryption'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-databricks-workspace
+  title: "Databricks Workspace"
+  description: "ARM template - Databricks Workspace"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-databricks-workspace
+  tags:
+    - azure
+    - arm
+    - databricks
+    - analytics
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-databricks-workspace'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-databricks-workspace-with-custom-vnet-address
+  title: "Databricks Workspace with Custom VNet"
+  description: "ARM template - Databricks Workspace with Custom VNet"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-databricks-workspace-with-custom-vnet-address
+  tags:
+    - azure
+    - arm
+    - databricks
+    - analytics
+    - networking
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-databricks-workspace-with-custom-vnet-address'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-ddos-attack-prevention
+  title: "DDoS Attack Prevention"
+  description: "ARM template - DDoS Attack Prevention"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-DDoS-Attack-Prevention
+  tags:
+    - azure
+    - arm
+    - security
+    - networking
+    - ddos
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-DDoS-Attack-Prevention'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-default-shared-dashboard
+  title: "Default Shared Dashboard"
+  description: "ARM template - Default Shared Dashboard"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-default-shared-dashboard
+  tags:
+    - azure
+    - arm
+    - monitoring
+    - dashboard
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-default-shared-dashboard'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-documentdb-account-consistencypolicy-create
+  title: "DocumentDB: Account Consistency Policy"
+  description: "ARM template - DocumentDB: Account Consistency Policy"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-documentdb-account-consistencypolicy-create
+  tags:
+    - azure
+    - arm
+    - database
+    - cosmosdb
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-documentdb-account-consistencypolicy-create'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-documentdb-account-create
+  title: "DocumentDB: Account Create"
+  description: "ARM template - DocumentDB: Account Create"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-documentdb-account-create
+  tags:
+    - azure
+    - arm
+    - database
+    - cosmosdb
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-documentdb-account-create'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-dtl-create-lab
+  title: "DevTest Labs: Create Lab"
+  description: "ARM template - DevTest Labs: Create Lab"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-dtl-create-lab
+  tags:
+    - azure
+    - arm
+    - devtest
+    - labs
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-dtl-create-lab'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-event-grid
+  title: "Event Grid"
+  description: "ARM template - Event Grid"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-event-grid
+  tags:
+    - azure
+    - arm
+    - messaging
+    - event-grid
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-event-grid'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-event-grid-event-hubs-handler
+  title: "Event Grid: Event Hubs Handler"
+  description: "ARM template - Event Grid: Event Hubs Handler"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-event-grid-event-hubs-handler
+  tags:
+    - azure
+    - arm
+    - messaging
+    - event-grid
+    - event-hubs
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-event-grid-event-hubs-handler'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-event-grid-resource-events-to-webhook
+  title: "Event Grid: Resource Events to Webhook"
+  description: "ARM template - Event Grid: Resource Events to Webhook"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-event-grid-resource-events-to-webhook
+  tags:
+    - azure
+    - arm
+    - messaging
+    - event-grid
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-event-grid-resource-events-to-webhook'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-event-grid-subscription-and-storage
+  title: "Event Grid: Subscription and Storage"
+  description: "ARM template - Event Grid: Subscription and Storage"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-event-grid-subscription-and-storage
+  tags:
+    - azure
+    - arm
+    - messaging
+    - event-grid
+    - storage
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-event-grid-subscription-and-storage'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-expressroute-circuit-create
+  title: "ExpressRoute Circuit: Create"
+  description: "ARM template - ExpressRoute Circuit: Create"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-expressroute-circuit-create
+  tags:
+    - azure
+    - arm
+    - networking
+    - expressroute
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-expressroute-circuit-create'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-front-door-create-basic
+  title: "Front Door: Basic"
+  description: "ARM template - Front Door: Basic"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-front-door-create-basic
+  tags:
+    - azure
+    - arm
+    - networking
+    - front-door
+    - cdn
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-front-door-create-basic'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-front-door-create-multiple-backends
+  title: "Front Door: Multiple Backends"
+  description: "ARM template - Front Door: Multiple Backends"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-front-door-create-multiple-backends
+  tags:
+    - azure
+    - arm
+    - networking
+    - front-door
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-front-door-create-multiple-backends'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-front-door-custom-domain
+  title: "Front Door: Custom Domain"
+  description: "ARM template - Front Door: Custom Domain"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-front-door-custom-domain
+  tags:
+    - azure
+    - arm
+    - networking
+    - front-door
+    - dns
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-front-door-custom-domain'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-front-door-geo-filtering
+  title: "Front Door: Geo Filtering"
+  description: "ARM template - Front Door: Geo Filtering"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-front-door-geo-filtering
+  tags:
+    - azure
+    - arm
+    - networking
+    - front-door
+    - security
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-front-door-geo-filtering'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-function-app-create-dedicated
+  title: "Function App: Dedicated Plan"
+  description: "ARM template - Function App: Dedicated Plan"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-function-app-create-dedicated
+  tags:
+    - azure
+    - arm
+    - serverless
+    - functions
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-function-app-create-dedicated'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-function-app-create-dynamic
+  title: "Function App: Consumption Plan"
+  description: "ARM template - Function App: Consumption Plan"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-function-app-create-dynamic
+  tags:
+    - azure
+    - arm
+    - serverless
+    - functions
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-function-app-create-dynamic'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-hdinsight-hbase-linux
+  title: "HDInsight: HBase on Linux"
+  description: "ARM template - HDInsight: HBase on Linux"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-hbase-linux
+  tags:
+    - azure
+    - arm
+    - hdinsight
+    - hbase
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-hbase-linux'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-hdinsight-hbase-linux-vnet
+  title: "HDInsight: HBase on Linux with VNet"
+  description: "ARM template - HDInsight: HBase on Linux with VNet"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-hbase-linux-vnet
+  tags:
+    - azure
+    - arm
+    - hdinsight
+    - hbase
+    - networking
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-hbase-linux-vnet'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-hdinsight-hbase-replication-geo
+  title: "HDInsight: HBase Geo Replication"
+  description: "ARM template - HDInsight: HBase Geo Replication"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-hbase-replication-geo
+  tags:
+    - azure
+    - arm
+    - hdinsight
+    - hbase
+    - ha
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-hbase-replication-geo'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-hdinsight-hbase-replication-one-vnet
+  title: "HDInsight: HBase Replication One VNet"
+  description: "ARM template - HDInsight: HBase Replication One VNet"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-hbase-replication-one-vnet
+  tags:
+    - azure
+    - arm
+    - hdinsight
+    - hbase
+    - ha
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-hbase-replication-one-vnet'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-hdinsight-hbase-replication-two-vnets-same-region
+  title: "HDInsight: HBase Replication Two VNets Same Region"
+  description: "ARM template - HDInsight: HBase Replication Two VNets Same Region"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-hbase-replication-two-vnets-same-region
+  tags:
+    - azure
+    - arm
+    - hdinsight
+    - hbase
+    - ha
+    - networking
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-hbase-replication-two-vnets-same-region'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-hdinsight-interactive-hive
+  title: "HDInsight: Interactive Hive"
+  description: "ARM template - HDInsight: Interactive Hive"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-interactive-hive
+  tags:
+    - azure
+    - arm
+    - hdinsight
+    - hive
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-interactive-hive'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-hdinsight-kafka
+  title: "HDInsight: Kafka"
+  description: "ARM template - HDInsight: Kafka"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-kafka
+  tags:
+    - azure
+    - arm
+    - hdinsight
+    - kafka
+    - messaging
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-kafka'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-hdinsight-linux-add-edge-node
+  title: "HDInsight: Linux Add Edge Node"
+  description: "ARM template - HDInsight: Linux Add Edge Node"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-add-edge-node
+  tags:
+    - azure
+    - arm
+    - hdinsight
+    - linux
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-add-edge-node'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-hdinsight-linux-ssh-password
+  title: "HDInsight: Linux SSH Password"
+  description: "ARM template - HDInsight: Linux SSH Password"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-password
+  tags:
+    - azure
+    - arm
+    - hdinsight
+    - linux
+    - ssh
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-password'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-hdinsight-linux-ssh-publickey
+  title: "HDInsight: Linux SSH Public Key"
+  description: "ARM template - HDInsight: Linux SSH Public Key"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-publickey
+  tags:
+    - azure
+    - arm
+    - hdinsight
+    - linux
+    - ssh
+    - security
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-publickey'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-hdinsight-linux-ssh-publickey-metastore-vnet
+  title: "HDInsight: Linux SSH Public Key with Metastore and VNet"
+  description: "ARM template - HDInsight: Linux SSH Public Key with Metastore and VNet"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-publickey-metastore-vnet
+  tags:
+    - azure
+    - arm
+    - hdinsight
+    - linux
+    - ssh
+    - networking
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-publickey-metastore-vnet'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-hdinsight-linux-with-edge-node
+  title: "HDInsight: Linux with Edge Node"
+  description: "ARM template - HDInsight: Linux with Edge Node"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-with-edge-node
+  tags:
+    - azure
+    - arm
+    - hdinsight
+    - linux
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-with-edge-node'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-hdinsight-linux-with-existing-default-storage-account
+  title: "HDInsight: Linux with Existing Default Storage Account"
+  description: "ARM template - HDInsight: Linux with Existing Default Storage Account"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-with-existing-default-storage-account
+  tags:
+    - azure
+    - arm
+    - hdinsight
+    - linux
+    - storage
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-with-existing-default-storage-account'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-hdinsight-linux-with-existing-linked-storage-account
+  title: "HDInsight: Linux with Existing Linked Storage Account"
+  description: "ARM template - HDInsight: Linux with Existing Linked Storage Account"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-with-existing-linked-storage-account
+  tags:
+    - azure
+    - arm
+    - hdinsight
+    - linux
+    - storage
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-with-existing-linked-storage-account'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-hdinsight-linux-with-sql-database
+  title: "HDInsight: Linux with SQL Database"
+  description: "ARM template - HDInsight: Linux with SQL Database"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-with-sql-database
+  tags:
+    - azure
+    - arm
+    - hdinsight
+    - linux
+    - sql
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-with-sql-database'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-hdinsight-rserver
+  title: "HDInsight: R Server"
+  description: "ARM template - HDInsight: R Server"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-rserver
+  tags:
+    - azure
+    - arm
+    - hdinsight
+    - r
+    - analytics
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-rserver'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-hdinsight-secure-vnet
+  title: "HDInsight: Secure VNet"
+  description: "ARM template - HDInsight: Secure VNet"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-secure-vnet
+  tags:
+    - azure
+    - arm
+    - hdinsight
+    - networking
+    - security
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-secure-vnet'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-hdinsight-spark-linux
+  title: "HDInsight: Spark on Linux"
+  description: "ARM template - HDInsight: Spark on Linux"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-spark-linux
+  tags:
+    - azure
+    - arm
+    - hdinsight
+    - spark
+    - analytics
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-spark-linux'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-hdinsight-spark-linux-vnet
+  title: "HDInsight: Spark on Linux with VNet"
+  description: "ARM template - HDInsight: Spark on Linux with VNet"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-spark-linux-vnet
+  tags:
+    - azure
+    - arm
+    - hdinsight
+    - spark
+    - analytics
+    - networking
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-spark-linux-vnet'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-hub-and-spoke-sandbox
+  title: "Hub and Spoke Network Sandbox"
+  description: "ARM template - Hub and Spoke Network Sandbox"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-hub-and-spoke-sandbox
+  tags:
+    - azure
+    - arm
+    - networking
+    - hub-spoke
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-hub-and-spoke-sandbox'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-integrationpatterns-messagerouter-logicapp
+  title: "Integration Patterns: Message Router with Logic App"
+  description: "ARM template - Integration Patterns: Message Router with Logic App"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-integrationpatterns-messagerouter-logicapp
+  tags:
+    - azure
+    - arm
+    - integration
+    - logic-app
+    - messaging
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-integrationpatterns-messagerouter-logicapp'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-integrationpatterns-messagerouter-servicebus
+  title: "Integration Patterns: Message Router with Service Bus"
+  description: "ARM template - Integration Patterns: Message Router with Service Bus"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-integrationpatterns-messagerouter-servicebus
+  tags:
+    - azure
+    - arm
+    - integration
+    - service-bus
+    - messaging
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-integrationpatterns-messagerouter-servicebus'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-internal-loadbalancer-create
+  title: "Internal Load Balancer: Create"
+  description: "ARM template - Internal Load Balancer: Create"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-internal-loadbalancer-create
+  tags:
+    - azure
+    - arm
+    - networking
+    - load-balancer
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-internal-loadbalancer-create'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
+
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: 101-iothub-with-consumergroup-create
+  title: "IoT Hub with Consumer Group"
+  description: "ARM template - IoT Hub with Consumer Group"
+  annotations:
+    github.com/project-slug: Azure/azure-quickstart-templates
+    backstage.io/source-location: url:https://github.com/Azure/azure-quickstart-templates/tree/master/101-iothub-with-consumergroup-create
+  tags:
+    - azure
+    - arm
+    - iot
+    - event-hubs
+spec:
+  owner: group:azure-quickstart-templates-maintainers
+  type: infrastructure
+  parameters:
+    - title: Azure Configuration
+      required:
+        - resourceGroupName
+        - location
+      properties:
+        resourceGroupName:
+          title: Resource Group Name
+          type: string
+          description: "デプロイ先の Azure リソースグループ名"
+        location:
+          title: Azure Location
+          type: string
+          description: "デプロイ先の Azure リージョン"
+          default: japaneast
+          enum:
+            - japaneast
+            - japanwest
+            - eastus
+            - eastus2
+            - westus
+            - westus2
+            - westeurope
+            - northeurope
+            - southeastasia
+            - eastasia
+  steps:
+    - id: fetch
+      name: Fetch ARM Template
+      action: fetch:plain
+      input:
+        url: 'https://github.com/Azure/azure-quickstart-templates/tree/master/101-iothub-with-consumergroup-create'
+    - id: deploy
+      name: Deploy to Azure
+      action: azure:arm:deploy
+      input:
+        resourceGroupName: ${{ parameters.resourceGroupName }}
+        location: ${{ parameters.location }}
+        templateFile: azuredeploy.json
+        parametersFile: azuredeploy.parameters.json
+  output:
+    links:
+      - title: Azure Portal
+        url: https://portal.azure.com/#resource/subscriptions//resourceGroups/${{ parameters.resourceGroupName }}
